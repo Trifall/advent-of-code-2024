@@ -1,4 +1,6 @@
-# advent-of-code-2023
+# Jerren Trifan's Advent-of-Code 2023
+
+This is my Advent of Code solutions for December 2023 in TypeScript. Turned off Copilot for these solutions.
 
 To install dependencies:
 
@@ -9,7 +11,17 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+bun run ./src/day<number>.ts
 ```
 
-This project was created using `bun init` in bun v1.0.15. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## File/Folder Structure
+
+All relevant files are in the src folder.
+
+- Source files are in the format of ```day<number>.ts```
+
+- Data is in the format of ```day<number>_data.txt```
+
+- Instructions are in the format of ```day<number>_instructions.txt```
+
+- ```_util.ts``` contains a file loading wrapper function
