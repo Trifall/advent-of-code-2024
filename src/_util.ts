@@ -9,6 +9,6 @@ export const GetFileData = async (filePath: string) => {
 	const fileData = await inputFile.text();
 	if (!fileData) throw Error(`Couldn't get text data from file.`);
 
-	console.log('Loaded Input File');
+	console.log(`Loaded Input File: ${filePath} `);
 	return fileData;
 };
