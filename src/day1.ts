@@ -1,6 +1,6 @@
 import { GetFileData } from './_util';
 
-const inputFile = await GetFileData('./day1_data1.txt');
+const inputFile = await GetFileData('./day1_data.txt');
 
 const splitData = inputFile.split('\n');
 
