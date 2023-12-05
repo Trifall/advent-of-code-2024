@@ -1,7 +1,7 @@
 import { GetFileData } from './_util';
 
 const filePath = './day5_data.txt';
-const fileData = await GetFileData(filePath);
+const inputData = await GetFileData(filePath);
 console.log(`Using file: ${filePath}`);
 
 type SeedCollection = Set<number>;
@@ -91,7 +91,7 @@ const parseInput = (input: string): void => {
 
 // Part 1
 console.time('Time');
-parseInput(fileData);
+parseInput(inputData);
 
 // find the lowest location
 let lowestLocation = Number.MAX_SAFE_INTEGER;
