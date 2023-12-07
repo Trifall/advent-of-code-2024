@@ -30,32 +30,23 @@ for (const dayDirectory of dayDirectories) {
 	}
 
 	// find the line that contains the answer
-	const answerLine = instructionsFileSplit.find((val) => val.includes('Your puzzle answer was'));
-	if (!answerLine) {
-		console.error(`𐄂 Couldn't find answer line in instructions file from ${printableDayDirectory}`);
+	const answerLines = instructionsFileSplit.filter((val) => val.includes('Your puzzle answer was'));
+	if (!answerLines || !answerLines.length) {
+		console.error(`𐄂 Couldn't find any answer line in instructions file from ${printableDayDirectory}`);
 		continue;
 	}
 
-	// get the answer from the line
-	const answer = answerLine.split('Your puzzle answer was ')[1].split('.')[0];
-	if (!answer) {
-		console.error(`𐄂 Couldn't find answer in answer line from ${printableDayDirectory}`);
-		continue;
-	} else if (answer === '___') {
-		console.log(`✓ Answer in answer line from ${printableDayDirectory} is already removed`);
-		continue;
-	}
+	let instructionsFileEdited = instructionsFile;
 
-	// remove the answer line from the instructions file
-	const instructionsFileWithoutAnswer = instructionsFile.replace(answerLine, 'Your puzzle answer was ___.');
-	if (!instructionsFileWithoutAnswer) {
-		console.error(
-			`𐄂 Couldn't remove answer line from instructions file from ${printableDayDirectory}/instructions.txt`
-		);
-		continue;
+	for (const answerLine of answerLines) {
+		instructionsFileEdited = instructionsFileEdited.replace(answerLine, 'Your puzzle answer was ___.');
+		if (!instructionsFileEdited) {
+			console.error(`𐄂 Couldn't remove answer line from instructions file from ${printableDayDirectory}`);
+			continue;
+		}
 	}
 
 	// write the new instructions file
-	await Bun.write(directoryFilePath, instructionsFileWithoutAnswer);
-	console.log(`✓ Removed answer '${answer}' from ${printableDayDirectory}/instructions.txt`);
+	await Bun.write(directoryFilePath, instructionsFileEdited);
+	console.log(`✓ Removed answer(s) from ${printableDayDirectory}`);
 }
