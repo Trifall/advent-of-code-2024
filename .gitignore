@@ -120,3 +120,4 @@ dist
 .pnp.*
 
 src/*_data.txt
+src/**/input.txt
