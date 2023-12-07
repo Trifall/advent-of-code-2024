@@ -1,8 +1,6 @@
-import { GetFileData } from './_util';
+import { GetFileData } from '../util';
 
-const filePath = './day5_data.txt';
-const inputData = await GetFileData(filePath);
-console.log(`Using file: ${filePath}`);
+const inputData = await GetFileData();
 
 type SeedCollection = Set<number>;
 type MapFormat = [destination: number, source: number, length: number];

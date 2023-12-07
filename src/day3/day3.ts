@@ -1,8 +1,8 @@
-import { GetFileData } from './_util';
+import { GetFileData } from '../util';
 
-const inputFile = await GetFileData('./day3_data.txt');
+const inputData = await GetFileData();
 
-const splitData = inputFile.split('\n');
+const splitData = inputData.split('\n');
 
 // For row and column reference: Row = y, Column = x
 
