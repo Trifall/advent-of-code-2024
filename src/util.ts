@@ -20,3 +20,20 @@ export const GetFileData = async (IS_EXAMPLE_OVERRIDE?: boolean) => {
 	console.log(`Loaded Input File: ${inputFilePath.split('/').pop()}`);
 	return fileData;
 };
+
+// Yoinked GCD and LCM functions
+export const gcd = (a: number, b: number): any => {
+	if (b == 0) return a;
+	return gcd(b, a % b);
+};
+
+// Returns LCM of array elements
+export function findArrayLCM(arr: number[], length: number) {
+	let ans = arr[0];
+
+	for (let i = 1; i < length; i++) {
+		ans = (arr[i] * ans) / gcd(arr[i], ans);
+	}
+
+	return ans;
+}
