@@ -13,7 +13,7 @@ bun install
 To run:
 
 ```bash
-bun run ./src/day<number>.ts
+bun run ./src/day<number>/day<number>.ts
 ```
 
 ## File/Folder Structure
