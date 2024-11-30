@@ -26,4 +26,6 @@ All relevant files are in the src folder.
 
 - Instructions are in the format of ```day<number>/instructions.txt```
 
-- ```util.ts``` contains a file loading wrapper function
+- Script to remove answers from the instructions files is ```removeAnswers.ts```
+
+- ```util.ts``` contains a file loading wrapper function, other math util functions.
