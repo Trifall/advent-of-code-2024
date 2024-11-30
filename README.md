@@ -20,10 +20,10 @@ bun run ./src/day<number>.ts
 
 All relevant files are in the src folder.
 
-- Source files are in the format of ```day<number>.ts```
+- Source files are in the format of ```day/day<number>.ts```
 
-- Data is in the format of ```day<number>_data.txt```
+- Data is in the format of ```day<number>/example.txt```
 
-- Instructions are in the format of ```day<number>_instructions.txt```
+- Instructions are in the format of ```day<number>/instructions.txt```
 
-- ```_util.ts``` contains a file loading wrapper function
+- ```util.ts``` contains a file loading wrapper function
