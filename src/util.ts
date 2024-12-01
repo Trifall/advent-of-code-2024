@@ -3,7 +3,10 @@ export const GetFileData = async (IS_EXAMPLE_OVERRIDE?: boolean) => {
 	const IS_EXAMPLE = Bun.argv.includes('--example') || Bun.argv.includes('-e') || IS_EXAMPLE_OVERRIDE;
 	const callingPath = Bun.main.split('/').slice(0, -1).join('/');
 	console.log(`===${IS_EXAMPLE ? 'EXAMPLE MODE' : 'INPUT MODE'}===`);
-	const inputFilePath = IS_EXAMPLE ? `${callingPath}/example.txt` : `${callingPath}/input.txt`;
+	console.log(`Calling Path: ${callingPath}`);
+	const inputFilePath = IS_EXAMPLE
+		? `${callingPath.length > 0 ? callingPath + '/' : './'}example.txt`
+		: `${callingPath.length > 0 ? callingPath + '/' : './'}input.txt`;
 	const inputFile = Bun.file(`${inputFilePath}`);
 
 	// const inputFilePath = `./${currentFile}_data.txt`;
