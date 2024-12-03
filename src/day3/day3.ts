@@ -1,6 +1,6 @@
 import { GetFileData } from '../util';
 
-const inputData = await GetFileData(false);
+const inputData = await GetFileData();
 
 const lines = inputData
 	.split('\r\n')
@@ -97,3 +97,13 @@ function solve(isPart1: boolean = true) {
 
 console.log(`Part 1 - Result: ${solve(true)}`);
 console.log(`Part 2 - Result: ${solve(false)}`);
+
+function easierParse() {
+	let dontLines: string[] = line.split("don't()");
+	let doLines: string[] = dontLines
+		.flatMap((seg) => seg.split('do()').slice(1)) // delete first section before the do
+		.filter((subline) => subline.length >= 8); // keep valid lines (length >= 8)
+
+	let fixedLine = doLines.join('');
+	console.log(`Fixed Line: ${fixedLine}`);
+}
