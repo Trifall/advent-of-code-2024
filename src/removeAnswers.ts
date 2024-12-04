@@ -29,24 +29,25 @@ for (const dayDirectory of dayDirectories) {
 		continue;
 	}
 
+	const startingText = 'Link to instructions for Day';
+
 	// find the line that contains the answer
-	const answerLines = instructionsFileSplit.filter((val) => val.includes('Your puzzle answer was'));
+	const answerLines = instructionsFileSplit.filter((val) => val.includes('--- Day '))?.[0];
 	if (!answerLines || !answerLines.length) {
+		if (instructionsFileSplit.filter((val) => val.includes(startingText))?.[0]) {
+			console.log(`✓ File is in correct format: ${printableDayDirectory}`);
+			continue;
+		}
 		console.error(`𐄂 Couldn't find any answer line in instructions file from ${printableDayDirectory}`);
 		continue;
 	}
 
-	let instructionsFileEdited = instructionsFile;
+	const dayNumber = answerLines.split('--- Day ')[1][0];
+	const problemName = answerLines.split('--- Day ')[1].split(' ---')[0].substring(3);
 
-	for (const answerLine of answerLines) {
-		instructionsFileEdited = instructionsFileEdited.replace(answerLine, 'Your puzzle answer was ___.');
-		if (!instructionsFileEdited) {
-			console.error(`𐄂 Couldn't remove answer line from instructions file from ${printableDayDirectory}`);
-			continue;
-		}
-	}
+	let newFileContent = `${startingText} ${dayNumber} '${problemName}': https://adventofcode.com/${new Date().getFullYear()}/day/${dayNumber}`;
 
 	// write the new instructions file
-	await Bun.write(directoryFilePath, instructionsFileEdited);
+	await Bun.write(directoryFilePath, newFileContent);
 	console.log(`✓ Removed answer(s) from ${printableDayDirectory}`);
 }
