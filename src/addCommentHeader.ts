@@ -1,4 +1,5 @@
 import { readdir } from 'fs/promises';
+import { AOC_URL, AOC_YEAR } from 'src/constants';
 
 const currentDirectory = import.meta.dir;
 
@@ -41,9 +42,9 @@ for (const dayDirectory of dayDirectories) {
 	// Construct the header comment
 	const headerComment = [
 		'/*',
-		'  Advent of Code 2024 - Jerren Trifan',
+		`  Advent of Code ${AOC_YEAR} - Jerren Trifan`,
 		`  Day ${dayNumber}`,
-		`  Link to problem and instructions: https://adventofcode.com/2024/day/${dayNumber}`,
+		`  Link to problem and instructions: ${AOC_URL}/${AOC_YEAR}/day/${dayNumber}`,
 		'*/',
 		'', // Add an empty line between the comment and the existing code
 	];
