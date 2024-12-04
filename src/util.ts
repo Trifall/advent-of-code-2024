@@ -1,16 +1,17 @@
+import os from 'os';
+
 export const GetFileData = async (IS_EXAMPLE_OVERRIDE?: boolean) => {
 	// get the file path up to the last folder
 	const IS_EXAMPLE = Bun.argv.includes('--example') || Bun.argv.includes('-e') || IS_EXAMPLE_OVERRIDE;
-	const callingPath = Bun.main.split('/').slice(0, -1).join('/');
-	console.log(`===${IS_EXAMPLE ? 'EXAMPLE MODE' : 'INPUT MODE'}===`);
-	console.log(`Calling Path: ${callingPath.length > 0 ? callingPath : './'}`);
-	const inputFilePath = IS_EXAMPLE
-		? `${callingPath.length > 0 ? callingPath + '/' : './'}example.txt`
-		: `${callingPath.length > 0 ? callingPath + '/' : './'}input.txt`;
-	const inputFile = Bun.file(`${inputFilePath}`);
+	const adjustedSlash = os.platform() === 'win32' ? `\\` : '/';
 
-	// const inputFilePath = `./${currentFile}_data.txt`;
-	// const exampleFilePath = `./${currentFile}_example.txt`;
+	const callingPath = Bun.main.split(adjustedSlash).slice(0, -1).join(adjustedSlash);
+	console.log(`===${IS_EXAMPLE ? 'EXAMPLE MODE' : 'INPUT MODE'}===`);
+	console.log(`Calling Path: ${callingPath.length > 0 ? callingPath : '.' + adjustedSlash}`);
+	const inputFilePath = IS_EXAMPLE
+		? `${callingPath.length > 0 ? callingPath + adjustedSlash : '.' + adjustedSlash}example.txt`
+		: `${callingPath.length > 0 ? callingPath + adjustedSlash : '.' + adjustedSlash}input.txt`;
+	const inputFile = Bun.file(`${inputFilePath}`);
 
 	if (!(await inputFile.exists())) {
 		console.error(`Couldn't retrieve file with path '${inputFilePath}'`);
