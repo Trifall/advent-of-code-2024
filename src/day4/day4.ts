@@ -11,19 +11,20 @@ const checkLetter = (row: number, col: number, letter: string) => {
 	return lines[row]?.[col] === letter;
 };
 
+const directions = [
+	[1, 0], // down
+	[-1, 0], // up
+	[0, -1], // left
+	[0, 1], // right
+	[-1, -1], // up-left
+	[-1, 1], // up-right
+	[1, -1], // down-left
+	[1, 1], // down-right
+];
+
+// search for 'X' characters, then search relative directions for matching 'XMAS'
 const p1FindMatches = (row: number, col: number): number => {
 	if (lines[row]?.[col] !== 'X') return 0;
-
-	const directions = [
-		[1, 0], // down
-		[-1, 0], // up
-		[0, -1], // left
-		[0, 1], // right
-		[-1, -1], // up-left
-		[-1, 1], // up-right
-		[1, -1], // down-left
-		[1, 1], // down-right
-	];
 
 	let matches = 0;
 
@@ -40,6 +41,7 @@ const p1FindMatches = (row: number, col: number): number => {
 	return matches;
 };
 
+// search for 'A' characters, then search relative diagonals
 const p2FindMatches = (row: number, col: number) => {
 	// check if valid 'A' char && at least 1 dist from boundaries
 	if (lines[row]?.[col] !== 'A' || row < 1 || row >= lines.length - 1 || col < 1 || col >= lines[row].length - 1)
