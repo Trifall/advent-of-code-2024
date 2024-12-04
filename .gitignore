@@ -121,3 +121,5 @@ dist
 
 src/*_data.txt
 src/**/input.txt
+
+*example.txt
