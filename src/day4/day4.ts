@@ -31,7 +31,6 @@ const directions = [
 // search for 'X' characters, then search relative directions for matching 'XMAS'
 const p1FindMatches = (row: number, col: number): number => {
 	if (lines[row]?.[col] !== 'X') return 0;
-
 	let matches = 0;
 
 	for (const [dr, dc] of directions) {
@@ -53,32 +52,14 @@ const p2FindMatches = (row: number, col: number) => {
 	if (lines[row]?.[col] !== 'A' || row < 1 || row >= lines.length - 1 || col < 1 || col >= lines[row].length - 1)
 		return 0;
 
-	/*
-	Check diag 1
-		X - -
-			A
-		-	- X
-	*/
-
 	const upLeftChar = lines[row - 1][col - 1];
 	const bottomRightChar = lines[row + 1][col + 1];
-
 	const diag1Valid = (upLeftChar === 'M' && bottomRightChar === 'S') || (upLeftChar === 'S' && bottomRightChar === 'M');
-
 	if (!diag1Valid) return 0;
-
-	/*
-	If diag 1 is valid, check diag 2
-		- - X
-			A
-		X	- -
-	*/
 
 	const upRightChar = lines[row - 1][col + 1];
 	const bottomLeftChar = lines[row + 1][col - 1];
-
 	const diag2Valid = (upRightChar === 'M' && bottomLeftChar === 'S') || (upRightChar === 'S' && bottomLeftChar === 'M');
-
 	if (!diag2Valid) return 0;
 
 	// both diags are valid
