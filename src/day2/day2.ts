@@ -1,3 +1,9 @@
+/*
+  Advent of Code 2024 - Jerren Trifan
+  Day 2
+  Link to problem and instructions: https://adventofcode.com/2024/day/2
+*/
+
 import { GetFileData } from '../util';
 
 const inputData = await GetFileData();
