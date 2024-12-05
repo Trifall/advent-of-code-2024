@@ -87,9 +87,7 @@ for (let line of invalidLines) {
 			// in its predecessors, then move it to before value[i] page
 			if (rulesMap.get(values[j])?.includes(values[i])) {
 				// move j page to before the i page
-				let removed = values.splice(j, 1)[0];
-				values = insert(values, i, removed);
-				j--;
+				values = insert(values, i, values.splice(j, 1)[0]);
 			}
 		}
 	}
